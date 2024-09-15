@@ -1,0 +1,351 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Microservice Test Lumen Project API Documentation",
+        "description": "Enjoy with our documentation of Microservice Lumen Test API.",
+        "contact": {
+            "email": "admin@admin.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "3.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api/v1",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/posts": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Get a list of posts",
+                "operationId": "506b68148d06fa079fffec3a27b7d2fc",
+                "responses": {
+                    "200": {
+                        "description": "List of posts retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Create a new post",
+                "operationId": "b738b26bf8c96f17ac29556f10d46677",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Post created successfully"
+                    }
+                }
+            }
+        },
+        "/posts/{id}": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Get a post by ID",
+                "operationId": "16467ee9d97de1a3a945e7f84e39c6f4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the post to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Post retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Post not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Update an existing post",
+                "operationId": "f1abaec6c447ce5aa2d75474819e3cd5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the post to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Post updated successfully"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Delete a post",
+                "operationId": "b684d0d7e01250defe67e361d8b6dfaa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the post to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Post deleted successfully"
+                    },
+                    "404": {
+                        "description": "Post not found"
+                    }
+                }
+            }
+        },
+        "/posts/{id}/restore": {
+            "post": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Restore a soft deleted post",
+                "operationId": "77a4b0345a6626c1d0be63eac42a6ce9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the post to restore",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Post restored successfully"
+                    },
+                    "404": {
+                        "description": "Post not found or not soft deleted"
+                    }
+                }
+            }
+        },
+        "/posts/{id}/force": {
+            "delete": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Force delete a post",
+                "operationId": "8c909125565639b88991d712b1ff0cf4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the post to force delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Post force deleted successfully"
+                    },
+                    "404": {
+                        "description": "Post not found or not soft deleted"
+                    }
+                }
+            }
+        },
+        "/posts/soft-deleted": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Get a list of soft deleted posts",
+                "operationId": "483f86092fa9ffccc44a0a6ad7d9dccf",
+                "responses": {
+                    "200": {
+                        "description": "List of soft deleted posts retrieved successfully"
+                    }
+                }
+            }
+        },
+        "/posts/search": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Search posts by title or content",
+                "operationId": "7e6cf1dd882ffe36bba84c1cda40aa74",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "Search query string",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Posts found matching the search query"
+                    }
+                }
+            }
+        },
+        "/tags": {
+            "get": {
+                "summary": "Get a list of tags",
+                "operationId": "8767fe41ed2e75df7ce6f99c8aeb47cb",
+                "responses": {
+                    "200": {
+                        "description": "List of tags retrieved successfully"
+                    }
+                }
+            }
+        },
+        "/posts/{postId}/tags/{tagId}": {
+            "post": {
+                "summary": "Attach a tag to an existing post",
+                "operationId": "5eb6d9ce9a87d60e3c33bda45d007a3e",
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "in": "path",
+                        "description": "ID of the post to attach the tag to",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "tagId",
+                        "in": "path",
+                        "description": "ID of the tag to attach to the post",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tag attached to post successfully"
+                    }
+                }
+            }
+        },
+        "/tags/{id}": {
+            "put": {
+                "summary": "Update an existing tag",
+                "operationId": "4cf68fe1043c53ff19e6bb3829820c01",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the tag to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Tag updated successfully"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a tag",
+                "operationId": "8188a73045428da13127cfeb1249890e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the tag to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tag deleted successfully"
+                    }
+                }
+            }
+        },
+        "/tags/{id}/restore": {
+            "post": {
+                "summary": "Restore a soft deleted tag",
+                "operationId": "05533055eda28512633a811a6f76bb73",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the tag to restore",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tag restored successfully"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearer": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "Bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Posts",
+            "description": "Operations related to posts"
+        }
+    ]
+}
