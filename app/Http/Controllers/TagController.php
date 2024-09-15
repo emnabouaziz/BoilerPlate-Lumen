@@ -13,10 +13,7 @@ class TagController extends Controller
     *     @OA\Response(
     *         response=200,
     *         description="List of tags retrieved successfully",
-    *         @OA\JsonContent(
-    *             type="array",
-    *             @OA\Items(ref="#/components/schemas/Tag")
-    *         )
+    *        
     *     )
     * )
     */
@@ -83,12 +80,10 @@ class TagController extends Controller
  *     ),
  *     @OA\RequestBody(
  *         required=true,
- *         @OA\JsonContent(ref="#/components/schemas/Tag")
  *     ),
  *     @OA\Response(
  *         response=200,
  *         description="Tag updated successfully",
- *         @OA\JsonContent(ref="#/components/schemas/Tag")
  *     )
  * )
  */
@@ -138,7 +133,6 @@ class TagController extends Controller
  *     @OA\Response(
  *         response=200,
  *         description="Tag restored successfully",
- *         @OA\JsonContent(ref="#/components/schemas/Tag")
  *     )
  * )
  */

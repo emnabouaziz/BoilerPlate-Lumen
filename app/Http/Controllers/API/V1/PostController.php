@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\V1;
+use Laravel\Lumen\Routing\Controller as BaseController;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ use Illuminate\Http\Response;
  *     description="Operations related to posts"
  * )
  */
-class PostController extends Controller
+class PostController extends BaseController
 {
     /**
      * @OA\Get(
@@ -22,10 +23,7 @@ class PostController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="List of posts retrieved successfully",
-     *         @OA\JsonContent(
-     *             type="array",
-     *             @OA\Items(ref="#/components/schemas/Post")
-     *         )
+     *         
      *     )
      * )
      */
@@ -50,7 +48,6 @@ class PostController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Post retrieved successfully",
-     *         @OA\JsonContent(ref="#/components/schemas/Post")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -71,12 +68,11 @@ class PostController extends Controller
      *     tags={"Posts"},
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/Post")
      *     ),
      *     @OA\Response(
      *         response=201,
      *         description="Post created successfully",
-     *         @OA\JsonContent(ref="#/components/schemas/Post")
+     *        
      *     )
      * )
      */
@@ -100,12 +96,12 @@ class PostController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/Post")
+     *      
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Post updated successfully",
-     *         @OA\JsonContent(ref="#/components/schemas/Post")
+     *       
      *     )
      * )
      */
@@ -161,7 +157,6 @@ class PostController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Post restored successfully",
-     *         @OA\JsonContent(ref="#/components/schemas/Post")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -223,10 +218,7 @@ class PostController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="List of soft deleted posts retrieved successfully",
-     *         @OA\JsonContent(
-     *             type="array",
-     *             @OA\Items(ref="#/components/schemas/Post")
-     *         )
+     *         
      *     )
      * )
      */
@@ -251,10 +243,7 @@ class PostController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Posts found matching the search query",
-     *         @OA\JsonContent(
-     *             type="array",
-     *             @OA\Items(ref="#/components/schemas/Post")
-     *         )
+     *        
      *     )
      * )
      */

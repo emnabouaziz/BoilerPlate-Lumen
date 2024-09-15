@@ -1,37 +1,29 @@
 <?php
-
-use Illuminate\Support\Facades\DB;
-use Elastic\Elasticsearch\ClientBuilder;
 /** @var \Laravel\Lumen\Routing\Router $router */
-
+$router->group(['prefix' => 'api/v1'], function () use ($router) {
+    /*
+    |--------------------------------------------------------------------------
+    | Application Routes
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register all of the routes for an application.
+    | It is a breeze. Simply tell Lumen the URIs it should respond to
+    | and give it the Closure to call when that URI is requested.
+    |
+    */
+    $router->options('/{any:.*}', function () {
+        return response(['status' => 'success'], 200);
+    });
+    $router->get('/api/documentation', function () {
+        return response()->json(\OpenApi\scan(app()->basePath('app')));
+    });
+    $router->get('/docs', function () {
+        return view('swagger-ui:index');
+    });
+$router->get('/posts', 'API\V1\PostController@index');
+$router->get('/test/search/{query}' , 'API\V1\TestController@search');
+});
 /*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It is a breeze. Simply tell Lumen the URIs it should respond to
-| and give it the Closure to call when that URI is requested.
-|
-*/
-
-
-
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
-
-$router->get('/test', function () use ($router) {
-    try {
-        $results = DB::select('SELECT version()');
-        return response()->json(['message' => 'PostgreSQL connected successfully', 'result' => $results]);
-    } catch (\Exception $e) {
-        return response()->json(['error' => $e->getMessage()], 500);
-    }
-});
-$router->get('/api/documentation', function () {
-    return view('swagger-lume::index');
-});
 $router->group(['prefix' => 'posts'], function () use ($router) {
     $router->get('/', 'PostController@index');
     $router->get('/soft-deleted', 'PostController@getSoftDeleted');
@@ -55,5 +47,5 @@ $router->group(['prefix' => 'tags'], function () use ($router) {
 
 $router->post('/redis/set', 'RedisController@setValue');
 $router->get('/redis/get', 'RedisController@getValue');
-
+*/
 
